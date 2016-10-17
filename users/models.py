@@ -6,4 +6,4 @@ class Profile(models.Model):
     image   = models.ImageField(upload_to='static/profiles', max_length=254)
 
     def __str__(self):
-        return self.user.username 
+        return self.user.username

@@ -2,9 +2,14 @@ from django.contrib.auth.models import User, Group
 from rest_framework.response import Response
 from .models import Profile
 from rest_framework import viewsets, permissions
-from .serializers import UserSerializer, GroupSerializer, ProfileSerializer
+from .serializers import UserSerializer, GroupSerializer, ProfileSerializer, RegistrationSerializer
 from rest_framework.decorators import detail_route, list_route
 from oauth2_provider.ext.rest_framework import TokenHasReadWriteScope, TokenHasScope
+
+from rest_framework.views import APIView
+from rest_framework import status
+
+
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -37,3 +42,26 @@ class ProfileViewSet(viewsets.ModelViewSet):
         profile = Profile.objects.get(pk=pk)
         profile.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+# Just the POST method is coded, so we don't need a viewset
+class RegistrationView(APIView):
+    """ Allow registration of new users. """
+    permission_classes = ()
+
+    def post(self, request):
+        serializer = RegistrationSerializer(data=request.data)
+
+        # Check format and unique constraint
+        if not serializer.is_valid():
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        data = serializer.data
+
+        u = User.objects.create(username=data['username'],
+                                email=data['email'],
+                                first_name=data['first_name'],
+                                last_name=data['last_name'],)
+        u.set_password(data['password'])
+        u.save()
+
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
