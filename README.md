@@ -22,8 +22,22 @@ source env/bin/activate
 pip install -r requirements.txt
 ```
 
+* Crie seu usuario
+
+```
+python manage.py createsuperuser
+```
+
+* Crie o banco de dados
+
+```
+python manage.py makemigrations
+python manage.py migrate
+```
+
 * Rode o servidor
 
 ```
 python manage.py runserver
 ```
+O servidor rodará na porta padrão (8000)
