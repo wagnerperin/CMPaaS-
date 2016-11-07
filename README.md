@@ -38,6 +38,6 @@ python manage.py migrate
 * Rode o servidor
 
 ```
-python manage.py runserver
+python manage.py runserver 0.0.0.0:8000
 ```
-O servidor rodará na porta padrão (8000)
+O servidor do CMPaaS escutará a porta 8000
