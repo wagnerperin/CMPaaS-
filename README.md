@@ -41,4 +41,4 @@ python manage.py migrate
 python manage.py runserver 0.0.0.0:8000
 ```
 
-* Abra o navegador e acesse o admin (localhost/admin)
+* Abra o navegador e acesse o admin (localhost:8000/admin)
