@@ -35,9 +35,10 @@ python manage.py makemigrations
 python manage.py migrate
 ```
 
-* Rode o servidor
+* Rode o servidor na porta 8000
 
 ```
 python manage.py runserver 0.0.0.0:8000
 ```
-O servidor do CMPaaS escutará a porta 8000
+
+* Abra o navegador e acesse o admin (localhost/admin)
