@@ -21,6 +21,10 @@ class MapViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
 
+    def get_queryset(self):
+        author = self.request.user
+        return Map.objects.filter(author=author)
+
 class VersionViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
     """
     This endpoint presents version of conceptual maps.
