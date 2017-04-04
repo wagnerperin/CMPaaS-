@@ -7,7 +7,7 @@ class MapSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Map
-        fields = ('url', 'author', 'title', 'question', 'description')
+        fields = ('id', 'url', 'author', 'title', 'question', 'description')
         read_only_fields = ['author']
 
 class VersionSerializer(serializers.HyperlinkedModelSerializer):
